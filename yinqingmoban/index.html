@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>demo</title>
+	<!--weui.css仅为快速的做出页面，可删除-->
+	<link rel="stylesheet" href="static/weui.css" />
+	<script src="static/zepto.min.js"></script>
+	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+	<div class="js-tmpd">
+
+	</div>
+	<textarea class="js-tmp" style="display:none;">
+    <div class="weui_media_box weui_media_text">
+        <a href="$url$" class="" target="_blank">
+            <h4 class="weui_media_title">$desc$</h4>
+        </a>
+        <p class="weui_media_desc">$desc$</p>
+    </div>
+</textarea>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url: 'a.json',
+				type: 'get',
+				dataType: 'json',
+				success: function(response) {
+					console.log(response);
+					//后文主要改动的地方之一
+					//这里暂时为空
+					var htmlList = '';
+					var data = response.list;
+					var htmlTemp = $("textarea.js-tmp").val(); //读取模板内容
+
+					$.each(data, function(i, el) {
+						for(var i = 0; i < 3; i++) {
+							htmlList += htmlTemp.temp(el); //模板渲染并生成最终内容
+						}
+					});
+
+					$('.js-tmpd').empty().append(htmlList);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					if(textStatus == 'timeout') {
+						alert('请求超时');
+						return false;
+					}
+					console.log(jqXHR.responseText);
+				},
+			});
+			
+		});
+		$(".js-tmpd").on('click', function() {
+				
+				var n = $(this).index();
+				alert(n)
+				$(".js-tmpd div").eq(n).show().siblings('.js-tmpd div').hide();
+			})
+	</script>
+</body>

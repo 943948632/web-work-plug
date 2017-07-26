@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="allf.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/option.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$(".dialog_link a").click(function(){
+		$(this).DialogShow({
+			'id': 'somedialog',  //传入id，可以控制样式
+			'dialogFx': '1',     //传入显示和隐藏的参数
+		});
+	});
+	$(".dialog__overlay").click(function(){
+		$(this).DialogShow({
+			'id': 'somedialog',
+			'dialogFx': '0',
+		});
+	});
+	$(".dialog__overlay").click(function(){
+		$(this).DialogShow({
+			'id': 'somedialog',
+			'dialogFx': '0',
+		});
+	});
+	$(".action").click(function(){
+		$(this).DialogShow({
+			'id': 'somedialog',
+			'dialogFx': '0',
+		});
+	});
+})
+</script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div class="dialog_link">
+    <ul>
+        <li>
+            <a class="444" href="#">点我弹出</a>
+        </li>
+        <li>
+            <a href="#">点我弹出</a>
+        </li>
+        <li>
+            <a href="#">点我弹出</a>
+        </li>
+        <li>
+            <a class="444" href="#">点我弹出</a>
+        </li>
+
+
+    </ul>
+</div>
+
+<div id="somedialog" class="dialog">
+    <div class="dialog__overlay"></div>
+    <div class="dialog__content">
+        <h2><strong>Howdy</strong>, I'm a dialog box</h2><div><button class="action" data-dialog-close>Close</button></div>
+    </div>
+</div>
+
+
+</body>
+</html>
